@@ -16,45 +16,45 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         self.label.text = "カメラで写真を撮りましょう！"
     }
     
     // 「カメラ」ボタン押下時の処理
     @IBAction func cameraStart(sender: AnyObject) {
-
-        let sourceType: UIImagePickerControllerSourceType = UIImagePickerControllerSourceType.Camera
+        
         // カメラが利用可能か確認する
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
+        {
             let cameraPicker = UIImagePickerController()
-            cameraPicker.sourceType = sourceType
             cameraPicker.delegate = self
-            self.presentViewController(cameraPicker, animated: true, completion: nil)
-            
-        } else {
+            cameraPicker.sourceType = .camera
+            cameraPicker.sourceType = UIImagePickerController.SourceType.camera
+            cameraPicker.allowsEditing = true
+            self.present(cameraPicker, animated: true, completion: nil)
+        }
+        else
+        {
             print("エラーが発生しました")
             self.label.text = "エラーが発生しました"
-            
         }
     }
     
     // 撮影が終了したときに呼ばれる
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            cameraView.contentMode = .ScaleAspectFit
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage:UIImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            cameraView.contentMode = .scaleAspectFit
             cameraView.image = pickedImage
             self.label.text = "撮った写真をクラウドに保存しよう！"
-            
         }
-        
-        // 閉じる処理
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        
+        picker.dismiss(animated: true, completion: nil)
     }
     
+
+
+    
     // 撮影がキャンセルされた時に呼ばれる
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
         print("キャンセルされました")
         self.label.text = "キャンセルされました"
         
@@ -75,56 +75,48 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         // 画像をリサイズする
         let imageW : Int = Int(image.size.width*0.2)
         let imageH : Int = Int(image.size.height*0.2)
-        let resizeImage = resize(image, width: imageW, height: imageH)
+        let resizeImage = resize(image: image, width: imageW, height: imageH)
         
         // ファイル名を決めるアラートを表示
-        let alert = UIAlertController(title: "保存します", message: "ファイル名を指定してください", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "保存します", message: "ファイル名を指定してください", preferredStyle: .alert)
         // UIAlertControllerにtextFieldを追加
-        alert.addTextFieldWithConfigurationHandler { (textField: UITextField!) -> Void in
+        alert.addTextField { (textField: UITextField!) -> Void in
         }
         // アラートのOK押下時の処理
-        alert.addAction(UIAlertAction(title: "OK", style: .Default) { (action: UIAlertAction!) -> Void in
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction!) -> Void in
             // 入力したテキストをファイル名に指定
             let fileName = alert.textFields![0].text! + ".png"
-            
-            // 画像をNSDataに変換
-            let pngData = NSData(data: UIImagePNGRepresentation(resizeImage)!)
-            let file = NCMBFile.fileWithName(fileName, data: pngData) as! NCMBFile
+
             
             // ACL設定（読み書き可）
-            let acl = NCMBACL()
-            acl.setPublicReadAccess(true)
-            acl.setPublicWriteAccess(true)
-            file.ACL = acl
-            
-            // ファイルストアへ画像のアップロード
-            file.saveInBackgroundWithBlock({ (error: NSError!) -> Void in
-                if error != nil {
-                    // 保存失敗時の処理
-                    print("保存に失敗しました。エラーコード：\(error.code)")
-                    self.label.text = "保存に失敗しました：\(error.code)"
-                    
-                } else {
+            var acl = NCMBACL.empty
+            acl.put(key: NCMBACL.ACL_PUBLIC, readable: true, writable: true)
+            // 画像をNSDataに変換
+            let pngData = NSData(data: resizeImage.pngData()!)
+            let file = NCMBFile.init(fileName: fileName, acl: acl)
+            file.saveInBackground(data: pngData as Data, callback: { result in
+                switch result {
+                case .success:
                     // 保存成功時の処理
                     print("保存に成功しました")
                     self.label.text = "保存に成功しました"
-                    
+                    self.label.text = "保存中：100％"
+                case let .failure(error):
+                    // 保存失敗時の処理
+                    print("保存に失敗しました。エラーコード：\(error)")
+                    self.label.text = "保存に失敗しました：\(error)"
                 }
-                
-            }, progressBlock: { (int: Int32) -> Void in
-                self.label.text = "保存中：\(int)％"
-                
             })
         })
         
         // アラートのCancel押下時の処理
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Default) { (action: UIAlertAction!) -> Void in
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default) { (action: UIAlertAction!) -> Void in
             print("保存がキャンセルされました")
             self.label.text = "保存がキャンセルされました"
             
         })
         
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
         
     }
     
@@ -132,8 +124,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     func resize (image: UIImage, width: Int, height: Int) -> UIImage {
         let size: CGSize = CGSize(width: width, height: height)
         UIGraphicsBeginImageContext(size)
-        image.drawInRect(CGRectMake(0, 0, size.width, size.height))
-        let resizeImage = UIGraphicsGetImageFromCurrentImageContext()
+        image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        guard let resizeImage = UIGraphicsGetImageFromCurrentImageContext() else { return UIImage()}
         UIGraphicsEndImageContext()
         
         return resizeImage

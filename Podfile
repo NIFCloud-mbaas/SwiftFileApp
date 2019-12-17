@@ -6,6 +6,6 @@ target 'SwiftFileApp' do
   use_frameworks!
 
   # Pods for SwiftFileApp
-  pod 'NCMB', :git => 'https://github.com/NIFCloud-mbaas/ncmb_swift'
+  	pod 'NCMB', :git => 'https://github.com/NIFCLOUD-mbaas/ncmb_swift.git'
 
 end

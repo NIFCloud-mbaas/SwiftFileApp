@@ -2,19 +2,19 @@
 ![画像1](/readme-img/001.png)
 
 ## 概要
-* [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)の『ファイルストア機能』を利用して、「撮った写真をクラウドに保存する」内容を実装したサンプルプロジェクトです
-* 簡単な操作ですぐに [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)の機能を体験いただけます★☆
+* [ニフクラmobile backend](https://mbaas.nifcloud.com/)の『ファイルストア機能』を利用して、「撮った写真をクラウドに保存する」内容を実装したサンプルプロジェクトです
+* 簡単な操作ですぐに [ニフクラmobile backend](https://mbaas.nifcloud.com/)の機能を体験いただけます★☆
 
-## ニフティクラウドmobile backendって何？？
+## ニフクラmobile backendって何？？
 スマートフォンアプリのバックエンド機能（プッシュ通知・データストア・会員管理・ファイルストア・SNS連携・位置情報検索・スクリプト）が**開発不要**、しかも基本**無料**(注1)で使えるクラウドサービス！
 
-注1：詳しくは[こちら](http://mb.cloud.nifty.com/price.htm)をご覧ください
+注1：詳しくは[こちら](https://mbaas.nifcloud.com/function.htm)をご覧ください
 
 ![画像2](/readme-img/002.png)
 
 ## 動作環境
 * Mac OS X 10.10(Yosemite)
-* Xcode ver. 7.2.1
+* Xcode ver.10 以上
 * iPhone6 ver. 8.2
  * このサンプルアプリは、端末のカメラを使用するため、実機ビルドが必要です
 
@@ -22,14 +22,14 @@
 
 
 ## 手順
-### 1. [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)の会員登録とログイン→アプリ作成
+### 1. [ニフクラmobile backend](https://mbaas.nifcloud.com/)の会員登録とログイン→アプリ作成
 
 * 上記リンクから会員登録（無料）をします。登録ができたらログインをすると下図のように「アプリの新規作成」画面が出るのでアプリを作成します
 
 ![画像3](/readme-img/003.png)
 
 * アプリ作成されると下図のような画面になります
-* この２種類のAPIキー（アプリケーションキーとクライアントキー）はXcodeで作成するiOSアプリに[ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)を紐付けるために使用します
+* この２種類のAPIキー（アプリケーションキーとクライアントキー）はXcodeで作成するiOSアプリに[ニフクラmobile backend](https://mbaas.nifcloud.com/)を紐付けるために使用します
 
 ![画像4](/readme-img/004.png)
 
@@ -39,7 +39,7 @@
 
 #### 2. GitHubからサンプルプロジェクトのダウンロード
 * 下記リンクをクリックしてプロジェクトをダウンロードをMacにダウンロードします
- * __[SwiftFileApp](https://github.com/natsumo/SwiftFileApp/archive/master.zip)__
+ * __[SwiftFileApp](https://github.com/NIFCLOUD-mbaas/SwiftFileApp/archive/master.zip)__
 
 ### 3. Xcodeでアプリを起動
 * ダウンロードしたフォルダを開き、「SwiftFileApp.xcworkspace」をダブルクリックしてXcode開きます(白い方です)
@@ -54,7 +54,7 @@
 ### 4. APIキーの設定
 
 * `AppDelegate.swift`を編集します
-* 先程[ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のダッシュボード上で確認したAPIキーを貼り付けます
+* 先程[ニフクラmobile backend](https://mbaas.nifcloud.com/)のダッシュボード上で確認したAPIキーを貼り付けます
 
 ![画像07](/readme-img/007.png)
 
@@ -81,11 +81,11 @@
 * 写真に名前を付けます
 * 「OK」をタップすると写真がクラウドに保存されます
  * 保存に失敗した場合は画面にエラーコードが表示されます
- * 万が一エラーが発生した場合は、[こちら](http://mb.cloud.nifty.com/doc/current/rest/common/error.html)よりエラー内容を確認いただけます
+ * 万が一エラーが発生した場合は、[こちら](https://mbaas.nifcloud.com/doc/current/rest/common/error.html)よりエラー内容を確認いただけます
 
 -----
 
-* 保存に成功したら、[ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のダッシュボードから「ファイルストア」を確認してみましょう！
+* 保存に成功したら、[ニフクラmobile backend](https://mbaas.nifcloud.com/)のダッシュボードから「ファイルストア」を確認してみましょう！
 
 ![画像12](/readme-img/012.png)
 
@@ -95,9 +95,7 @@
 サンプルプロジェクトに実装済みの内容のご紹介
 
 #### SDKのインポートと初期設定
-* ニフティクラウドmobile backend の[ドキュメント（クイックスタート）](http://mb.cloud.nifty.com/doc/current/introduction/quickstart_ios.html)をSwift版に書き換えたドキュメントをご用意していますので、ご活用ください
- * [SwiftでmBaaSを始めよう！(＜CocoaPods＞でuse_framewoks!を有効にした方法)](http://qiita.com/natsumo/items/57d3a4d9be16b0490965)
- * [＜CocoaPods＞SwiftでmBaaSを始めよう！](http://qiita.com/natsumo/items/b2d18d87d57300c8d81c)
+* ニフクラmobile backend の[ドキュメント（クイックスタート）](https://mbaas.nifcloud.com/doc/current/introduction/quickstart_ios.html)をSwift版に書き換えたドキュメントをご用意していますので、ご活用ください
 
 #### ロジック
  * `Main.storyboard`でデザインを作成し、`ViewController.swift`にロジックを書いています
@@ -246,11 +244,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 }
 ```
 
-* 【注意】[ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のBasicプラン（無料）では、1度にアップロードできるファイルの上限が５MBとなっています。iPhoneで撮影した写真はその制限を超えてしまうため、圧縮して保存を行っています。（有償プランの場合上限は異なります。詳しくは[こちら](http://mb.cloud.nifty.com/price.htm)）
+* 【注意】[ニフクラmobile backend](https://mbaas.nifcloud.com/)のBasicプラン（無料）では、1度にアップロードできるファイルの上限が５MBとなっています。iPhoneで撮影した写真はその制限を超えてしまうため、圧縮して保存を行っています。（有償プランの場合上限は異なります。詳しくは[こちら](https://mbaas.nifcloud.com/price.htm)）
 
 
 ## 参考
-* ニフティクラウドmobile backend の[ドキュメント（ファイルストア）](http://mb.cloud.nifty.com/doc/current/filestore/basic_usage_ios.html)をSwift版に書き換えたドキュメントをご用意していますので、ご活用ください
+* ニフクラmobile backend の[ドキュメント（ファイルストア）](https://mbaas.nifcloud.com/doc/current/filestore/basic_usage_ios.html)をSwift版に書き換えたドキュメントをご用意していますので、ご活用ください
  * [Swiftでファイルをサーバーに保存しよう！](http://qiita.com/natsumo/items/974247b3b27ec0880dc6)
 * 同じ内容の【Objective-C】版もご用意しています
  * https://github.com/natsumo/ObjcFileApp

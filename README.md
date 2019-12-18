@@ -248,6 +248,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
 
 ## 参考
-* ニフクラmobile backend の[ドキュメント（ファイルストア）](https://mbaas.nifcloud.com/doc/current/filestore/basic_usage_swift.html)をSwift版に書き換えたドキュメントをご用意していますので、ご活用ください
+* ニフクラmobile backend の[ドキュメント（ファイルストア）](https://mbaas.nifcloud.com/doc/current/filestore/basic_usage_swift.html)
 * 同じ内容の【Objective-C】版もご用意しています
  * https://github.com/natsumo/ObjcFileApp

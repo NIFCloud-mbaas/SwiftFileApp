@@ -95,7 +95,7 @@
 サンプルプロジェクトに実装済みの内容のご紹介
 
 #### SDKのインポートと初期設定
-* ニフクラmobile backend の[ドキュメント（クイックスタート）](https://mbaas.nifcloud.com/doc/current/introduction/quickstart_ios.html)をSwift版に書き換えたドキュメントをご用意していますので、ご活用ください
+* ニフクラmobile backend の[ドキュメント（クイックスタート）](https://mbaas.nifcloud.com/doc/current/introduction/quickstart_swift.html)をご用意していますので、ご活用ください
 
 #### ロジック
  * `Main.storyboard`でデザインを作成し、`ViewController.swift`にロジックを書いています
@@ -248,7 +248,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
 
 ## 参考
-* ニフクラmobile backend の[ドキュメント（ファイルストア）](https://mbaas.nifcloud.com/doc/current/filestore/basic_usage_ios.html)をSwift版に書き換えたドキュメントをご用意していますので、ご活用ください
- * [Swiftでファイルをサーバーに保存しよう！](http://qiita.com/natsumo/items/974247b3b27ec0880dc6)
+* ニフクラmobile backend の[ドキュメント（ファイルストア）](https://mbaas.nifcloud.com/doc/current/filestore/basic_usage_swift.html)をSwift版に書き換えたドキュメントをご用意していますので、ご活用ください
 * 同じ内容の【Objective-C】版もご用意しています
  * https://github.com/natsumo/ObjcFileApp

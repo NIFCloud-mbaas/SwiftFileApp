@@ -2,16 +2,16 @@ PODS:
   - NCMB (0.2.0)
 
 DEPENDENCIES:
-  - NCMB (from `https://github.com/NIFCloud-mbaas/ncmb_swift`)
+  - NCMB (from `https://github.com/NIFCLOUD-mbaas/ncmb_swift`)
 
 EXTERNAL SOURCES:
   NCMB:
-    :git: https://github.com/NIFCloud-mbaas/ncmb_swift
+    :git: https://github.com/NIFCLOUD-mbaas/ncmb_swift
 
 CHECKOUT OPTIONS:
   NCMB:
     :commit: 5e42602fdcf6d09e7b121ad63bb4183df536f678
-    :git: https://github.com/NIFCloud-mbaas/ncmb_swift
+    :git: https://github.com/NIFCLOUD-mbaas/ncmb_swift
 
 SPEC CHECKSUMS:
   NCMB: baa82e74872f74a65edfe2062ec74bb73268c078

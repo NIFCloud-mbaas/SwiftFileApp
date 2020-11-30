@@ -13,9 +13,10 @@
 ![画像2](/readme-img/002.png)
 
 ## 動作環境
-* Mac OS X 10.10(Yosemite)
-* Xcode ver.10 以上
-* iPhone6 ver. 8.2
+* Mac OS 10.15(Catalina)
+* Xcode ver. 12.0
+* Simulator ver.12.0
+* iPhone11 (iOS14.0)
  * このサンプルアプリは、端末のカメラを使用するため、実機ビルドが必要です
 
 ※上記内容で動作確認をしています。
